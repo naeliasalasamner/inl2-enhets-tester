@@ -1,0 +1,16 @@
+{
+  "name": "inl2_enhets_tester",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@vitest/coverage-v8": "^2.1.9",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  }
+}
