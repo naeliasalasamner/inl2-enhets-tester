@@ -1,3 +1,5 @@
+[![Run unit tests and coverage](https://github.com/naeliasalasamner/inl2-enhets-tester/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/naeliasalasamner/inl2-enhets-tester/actions/workflows/tests.yml)
+
 # Inlämning 2 – Enhetstester med Vitest & TypeScript
 
 Detta projekt är en del av **Inlämning 2** och innehåller en implementation av en enkel e-handel/varukorg tillsammans med omfattande enhetstester.
