@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { ShoppingCart } from "../src/shoppingCart";
 
-//Verifiera att varukorgen är tom från början
 describe("ShoppingCart", () => {
   it("should be empty from the start", () => {
     const cart = new ShoppingCart();
@@ -12,7 +11,6 @@ describe("ShoppingCart", () => {
   });
 });
 
-//Test that if a product is added, the length of the cart variable increases.
 describe("ShoppingCart", () => {
   it("should add a product to the cart and increase the length", () => {
     const cart = new ShoppingCart();
@@ -24,7 +22,6 @@ describe("ShoppingCart", () => {
   });
 });
 
-// Verifiera/testa att den tillagda produkten har rätt namn/pris/beskrivning/produkt-ID.
   it("should have correct name, price, description, and product ID", () => {
   const cart = new ShoppingCart();
 
@@ -36,7 +33,6 @@ describe("ShoppingCart", () => {
   });
 
 
-// Verifiera/testa att nästa tillagda produkt har rätt namn/pris/beskrivning/produkt-ID.
   it("should increase quantity if same product is added", () => {
   const cart = new ShoppingCart();
 
@@ -48,7 +44,6 @@ describe("ShoppingCart", () => {
   expect(cart.cart[0].quantity).toBe(3);
 });
 
-// Verifiera att längden på arrayen minskar när en produkt tas bort helt.
 it("should decrease quantity when removing part of the quantity", () => {
   const cart = new ShoppingCart();
 
@@ -60,7 +55,6 @@ it("should decrease quantity when removing part of the quantity", () => {
   expect(cart.cart[0].quantity).toBe(3);
 });
 
-//Verifiera att längden på arrayen är 0 om alla produkter är borttagna.
 it("should remove product completely when quantity reaches 0 and decrease cart lenght", () =>{
     const cart = new ShoppingCart();
 
@@ -84,12 +78,11 @@ const totalQuantity = cart.getTotalQuantity();
 expect(totalQuantity).toBe(7)
 });
 
-
 it("should update total (sum) correctly when adding and removing products", () => {
       const cart = new ShoppingCart();
 
     cart.addProduct(1, 2);
-    expect(cart.cartTotalExclTax).toBe(200); // Assuming each product costs 100
+    expect(cart.cartTotalExclTax).toBe(200); 
 
     cart.addProduct(2, 1);
     expect(cart.cartTotalExclTax).toBe(500);
@@ -140,7 +133,6 @@ it("should clear the cart, total amount and tax when clearCart is called", () =>
 it("should add the correct product from API (productId = 1)", async () => {
   const cart = new ShoppingCart();
 
-  // Mocka fetch
   globalThis.fetch = vi.fn().mockResolvedValue({
     json: async () => ({
       id: 1,
@@ -173,9 +165,6 @@ it("shouuld remove the correct product(productId =1) from the cart", () => {
     expect(cart.cart.find((item) => item.productId === 1)).toBeUndefined();
 });
 
-//Testet säkerställer att varukorgen aldrig innehåller produkter med noll eller negativt antal 
-// genom att automatiskt ta bort produkten när quantity ≤ 0.
-
 it("should remove product if quantity becomes zero or negative", () => {
     const cart = new ShoppingCart();
 
@@ -187,18 +176,16 @@ it("should remove product if quantity becomes zero or negative", () => {
     expect(cart.cart).toHaveLength(0);
 });
 
-
 it("should not place an order if required customer data is missing", async () => {
   const cart = new ShoppingCart();
   cart.addProduct(1, 1);
 
-  // Mock fetch för att kunna kontrollera att det INTE anropas
   globalThis.fetch = vi.fn();
 
   await expect(
     cart.placeOrder({
       name: "Anna",
-      lastName: "", // saknas
+      lastName: "", 
       fullAddress: "Street 1, 12345 City",
     } as any)
   ).rejects.toThrow(/Missing.*customer data/);
@@ -206,7 +193,6 @@ it("should not place an order if required customer data is missing", async () =>
 
   expect(globalThis.fetch).not.toHaveBeenCalled();
 });
-
 
 it("should not place an order if the cart is empty", async () => {
     const cart = new ShoppingCart();
